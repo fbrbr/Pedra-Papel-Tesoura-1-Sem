@@ -2,13 +2,15 @@ import java.util.Scanner;
 import java.util.Random;
 /**
  * Pedra, Papel, Tesoura. Usuário contra computador.
- * 
  * @author Hildor Jr.
  * @version (1.0)
  */
 public class PPT{
     public static void main(String[] args){
-        int dnv ;
+        int dnv;
+        int scoreJogador = 0;
+        int scoreComputador = 0;
+        int scoreEmpate = 0;
     do{
         Scanner in = new Scanner(System.in);
         int x = 1337;
@@ -28,6 +30,10 @@ public class PPT{
         do{
             System.out.print("Sua jogada: ");
             x = in.nextInt();
+            if(x == 1337){
+            System.out.println("VOCÊ ENCONTROU UM EASTEREGG.");
+            System.out.println("ACESSE encrypter.hol.es PARA MAIS INFORMAÇÕES.\n");
+            }
         }while(x < 0 || x > 2);
         
         //Jogada aleatoria do computador.
@@ -46,18 +52,21 @@ public class PPT{
                 System.out.print("Você escolheu pedra e o computador também.\n");
                 Pausa(1000);
                 System.out.print("O JOGO EMPATOU");
+                scoreEmpate++;
             }
             //Computador escolhe papel.
             if(y == 1){
                 System.out.print("Você escolheu pedra e o computador escolheu papel. Papel cobre pedra.\n");
                 Pausa(1000);
                 System.out.print("VOCÊ PERDEU");
+                scoreComputador++;
             }
             //Computador escolhe tesoura.
             if(y == 2){
                 System.out.print("Você escolheu pedra e o computador escolheu tesoura, pedra quebra tesoura.\n");
                 Pausa(1000);
                 System.out.print("VOCÊ GANHOU");
+                scoreJogador++;
             }
         }
         //Usuario escolhe papel.
@@ -67,18 +76,21 @@ public class PPT{
                 System.out.print("Você escolheu papel e o computador escolheu pedra. Papel cobre pedra.\n");
                 Pausa(1000);
                 System.out.print("VOCÊ GANHOU");
+                scoreJogador++;
             }
             //Computador escolhe papel.
             if(y == 1){
                 System.out.print("Você escolheu papel e o computador também.\n");
                 Pausa(1000);
                 System.out.print("O JOGO EMPATOU");
+                scoreEmpate++;
             }
             //Computador escolhe tesoura.
             if(y == 2){
                 System.out.print("Você escolheu papel e o computador escolheu tesoura, tesoura corta papel.\n");
                 Pausa(1000);
                 System.out.print("VOCÊ PERDEU");
+                scoreComputador++;
             }
         }
         //Usuario escolhe tesoura.
@@ -88,25 +100,39 @@ public class PPT{
                 System.out.print("Você escolheu tesoura e o computador escolheu pedra. Pedra quebra tesoura.\n");
                 Pausa(1000);
                 System.out.print("VOCÊ PERDEU");
+                scoreComputador++;
             }
             //Computador escolhe papel.
             if(y == 1){
                 System.out.print("Você escolheu tesoura e o computador escolheu papel. Tesoura corta papel.\n");
                 Pausa(1000);
                 System.out.print("VOCÊ GANHOU");
+                scoreJogador++;
             }
             //Computador escolhe tesoura.
             if(y == 2){
                 System.out.print("Você escolheu tesoura e o computador escolheu tesoura, pedra quebra tesoura.\n");
                 Pausa(1000);
                 System.out.print("O JOGO EMPATOU");
+                scoreEmpate++;
             }
         }
         
         //Verifica se o usuario deseja jogar novamente.
+        Pausa(1000);
         System.out.print("\n\nSe você deseja jogar novamente digite '1': ");
         dnv = in.nextInt();
     }while(dnv == 1);
+        if(dnv != 1){
+            System.out.print("\f---------------------------\n");
+            System.out.print("PEDRA, PAPEL, TESOURA\n");
+            System.out.print("---------------------------\n");
+            System.out.println("Obrigado por jogar!");
+            System.out.println("Você ganhou " + scoreJogador + " veze(s)");
+            System.out.println("e perdeu " + scoreComputador + " veze(s)");
+            System.out.println("e empatou " + scoreEmpate + " veze(s)");
+            System.out.print("---------------------------\n");
+        }
     }
    
     //Código do StackOverflow usado para criar pausas entre as ações.
